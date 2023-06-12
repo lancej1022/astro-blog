@@ -4,7 +4,7 @@
   "private": false,
   "scripts": {
     "astro": "astro",
-    "build": "astro build && jampack ./dist",
+    "build": "astro build && subfont -ir --root dist && jampack ./dist",
     "check-types": "astro check && tsc --noEmit",
     "cz": "cz",
     "dev": "astro dev",
@@ -49,6 +49,7 @@
     "lint-staged": "^13.2.2",
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.2.8",
+    "subfont": "^6.12.5",
     "typescript": "^5.1.3"
   },
   "config": {
