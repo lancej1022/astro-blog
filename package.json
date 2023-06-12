@@ -4,7 +4,7 @@
   "private": false,
   "scripts": {
     "astro": "astro",
-    "build": "astro build && subfont -ir --root dist && jampack ./dist",
+    "build": "astro build && subfont --font-display fallback -ir --root dist && jampack ./dist",
     "check-types": "astro check && tsc --noEmit",
     "cz": "cz",
     "dev": "astro dev",
