@@ -1,7 +1,5 @@
 ---
 import Layout from "~/layouts/Layout.astro";
-import Header from "~/components/Header.astro";
-import Footer from "~/components/Footer.astro";
 import Tag from "~/components/Tag.astro";
 import Datetime from "~/components/Datetime";
 import type { CollectionEntry } from "astro:content";
@@ -22,7 +20,6 @@ import { getReadingTime } from "~/utils/readingTime";
 ---
 
 <Layout title={title ?? ""} author={author ?? ""} description={description} ogImage={ogUrl}>
-  <Header />
   <div class="mx-auto flex w-full max-w-3xl justify-start px-2">
     <button class="focus-outline mb-2 mt-8 flex hover:opacity-75" onclick="
     history.back()
@@ -47,7 +44,6 @@ import { getReadingTime } from "~/utils/readingTime";
       {tags.map((tag) => <Tag name={slugifyStr(tag)} />)}
     </ul>
   </main>
-  <Footer />
 </Layout>
 
 <style>

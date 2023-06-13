@@ -6,11 +6,10 @@ import LinkButton from "./LinkButton.astro";
 import logoPNG from "/assets/logo.png";
 import logoSVG from "/assets/logo.svg";
 
-export interface Props {
-  activeNav?: "posts" | "tags" | "about" | "search";
-}
+const navOptions = new Set(["posts", "tags", "about", "search"]);
 
-const { activeNav } = Astro.props;
+const pathSegments = Astro.url.pathname.split("/").filter(Boolean);
+const navItemToHighlight = navOptions.has(pathSegments[0] ?? "") && pathSegments[0];
 ---
 
 <header>
@@ -59,18 +58,20 @@ const { activeNav } = Astro.props;
         </button>
         <ul id="menu-items" class="display-none sm:flex">
           <li>
-            <a href="/posts" class={activeNav === "posts" ? "active" : ""}> Posts</a>
+            <a href="/posts" class={navItemToHighlight === "posts" ? "active" : ""}> Posts</a>
           </li>
           <li>
-            <a href="/tags" class={activeNav === "tags" ? "active" : ""}> Tags</a>
+            <a href="/tags" class={navItemToHighlight === "tags" ? "active" : ""}> Tags</a>
           </li>
           <li>
-            <a href="/about" class={activeNav === "about" ? "active" : ""}> About</a>
+            <a href="/about" class={navItemToHighlight === "about" ? "active" : ""}> About</a>
           </li>
           <li>
             <LinkButton
               href="/search"
-              className={`focus-outline p-3 sm:p-1 ${activeNav === "search" ? "active" : ""}`}
+              className={`focus-outline p-3 sm:p-1 ${
+                navItemToHighlight === "search" ? "active" : ""
+              }`}
               ariaLabel="search"
               title="Search"
             >
@@ -100,6 +101,21 @@ const { activeNav } = Astro.props;
               )
             }
           </li>
+          <li>
+            <a
+              target="_blank"
+              href="/rss.xml"
+              class="rss-link"
+              aria-label="rss feed"
+              title="RSS Feed"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="rss-icon"
+                ><path d="M19 20.001C19 11.729 12.271 5 4 5v2c7.168 0 13 5.832 13 13.001h2z"
+                ></path><path d="M12 20.001h2C14 14.486 9.514 10 4 10v2c4.411 0 8 3.589 8 8.001z"
+                ></path><circle cx="6" cy="18" r="2"></circle>
+              </svg>
+            </a>
+          </li>
         </ul>
       </nav>
     </div>
@@ -108,8 +124,14 @@ const { activeNav } = Astro.props;
 </header>
 
 <style>
+  /* .rss-link {
+    @apply mb-6;
+  } */
+  .rss-icon {
+    @apply h-6 w-6 scale-110 fill-skin-accent sm:scale-125;
+  }
   #skip-to-content {
-    @apply absolute -top-full left-16 z-50 bg-skin-accent py-2 px-3 text-skin-inverted transition-all focus:top-4;
+    @apply absolute -top-full left-16 z-50 bg-skin-accent px-3 py-2 text-skin-inverted transition-all focus:top-4;
   }
   .nav-container {
     @apply mx-auto flex max-w-3xl flex-col items-center justify-between sm:flex-row;
@@ -131,7 +153,7 @@ const { activeNav } = Astro.props;
     @apply flex w-full flex-col items-center bg-skin-fill sm:ml-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0;
   }
   nav ul {
-    @apply mt-4 grid w-44 grid-cols-2 grid-rows-4 gap-y-2 gap-x-2 sm:mt-0 sm:ml-0 sm:w-auto sm:gap-y-0 sm:gap-x-5;
+    @apply mt-4 grid w-44 grid-cols-2 grid-rows-4 gap-x-2 gap-y-2 sm:ml-0 sm:mt-0 sm:w-auto sm:gap-x-5 sm:gap-y-0;
   }
   nav ul li {
     @apply col-span-2 flex items-center justify-center;
@@ -181,7 +203,6 @@ const { activeNav } = Astro.props;
 </style>
 
 <script>
-  // Toggle menu
   const menuBtn = document.querySelector(".hamburger-menu");
   const menuIcon = document.querySelector(".menu-icon");
   const menuItems = document.querySelector("#menu-items");

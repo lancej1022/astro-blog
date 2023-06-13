@@ -1,6 +1,8 @@
 ---
 import { SITE } from "~/config";
 import "~/styles/base.css";
+import Footer from "~/components/Footer.astro";
+import Header from "~/components/Header.astro";
 
 const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 
@@ -30,6 +32,7 @@ const socialImageURL = new URL(ogImage ? ogImage : SITE.ogImage, Astro.url.origi
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonicalURL} />
+    <!-- TODO: wtf is this? -->
     <meta name="generator" content={Astro.generator} />
 
     <!-- General Meta Tags -->
@@ -73,6 +76,8 @@ const socialImageURL = new URL(ogImage ? ogImage : SITE.ogImage, Astro.url.origi
     <script is:inline src="/toggle-theme.js"></script>
   </head>
   <body>
+    <Header />
     <slot />
+    <Footer />
   </body>
 </html>

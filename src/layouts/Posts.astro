@@ -22,7 +22,6 @@ const next = pageNum < totalPages ? "" : "disabled";
 ---
 
 <Layout title={`Posts | ${SITE.title}`}>
-  <Header activeNav="posts" />
   <Main pageTitle="Posts" pageDesc="All the articles I've posted.">
     <ul>
       {posts.map(({ data }) => <Card href={`/posts/${slugify(data)}`} frontmatter={data} />)}
@@ -57,12 +56,11 @@ const next = pageNum < totalPages ? "" : "disabled";
       </nav>
     )
   }
-  <Footer noMarginTop={totalPages > 1} />
 </Layout>
 
 <style>
   .pagination-wrapper {
-    @apply mt-auto mb-8 flex justify-center;
+    @apply mb-8 mt-auto flex justify-center;
   }
   .disabled {
     @apply pointer-events-none select-none opacity-50 hover:text-skin-base group-hover:fill-skin-base;
