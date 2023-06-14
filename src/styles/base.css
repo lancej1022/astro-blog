@@ -124,3 +124,18 @@
     @apply outline-2 outline-offset-1 outline-skin-fill focus-visible:no-underline focus-visible:outline-dashed;
   }
 }
+
+.holy-grail {
+  display: grid;
+  grid-template-columns: 1fr min(75ch, calc(100% - 64px)) 1fr;
+  /* grid-column-gap: 32px; */
+}
+
+.holy-grail > * {
+  grid-column: 2;
+}
+
+.full-bleed {
+  width: 100%;
+  grid-column: 1 / 4;
+}
