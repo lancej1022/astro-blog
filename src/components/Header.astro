@@ -124,11 +124,11 @@ const navItemToHighlight = navOptions.has(pathSegments[0] ?? "") && pathSegments
 </header>
 
 <style>
-  /* .rss-link {
-    @apply mb-6;
-  } */
+  .rss-link svg {
+    @apply hover:fill-skin-accent;
+  }
   .rss-icon {
-    @apply h-6 w-6 scale-110 fill-skin-accent sm:scale-125;
+    @apply h-6 w-6 scale-110 sm:scale-125;
   }
   #skip-to-content {
     @apply absolute -top-full left-16 z-50 bg-skin-accent px-3 py-2 text-skin-inverted transition-all focus:top-4;

@@ -1,7 +1,7 @@
 ---
 import Layout from "~/layouts/Layout.astro";
 import Tag from "~/components/Tag.astro";
-import Datetime from "~/components/Datetime";
+import PostTimeAndReadingTime from "~/components/Datetime";
 import type { CollectionEntry } from "astro:content";
 import { slugifyStr } from "~/utils/slugify";
 
@@ -15,12 +15,11 @@ const { title, author, description, ogImage, pubDatetime, tags } = post.data;
 const { Content } = await post.render();
 
 const ogUrl = new URL(ogImage ? ogImage : `${title}.png`, Astro.url.origin).href;
-
-import { getReadingTime } from "~/utils/readingTime";
 ---
 
 <Layout title={title ?? ""} author={author ?? ""} description={description} ogImage={ogUrl}>
-  <div class="mx-auto flex w-full max-w-3xl justify-start px-2">
+  <!-- constrain width using the same `min` constrain width here -->
+  <div class="custom-width mx-auto flex w-full justify-start px-2">
     <button class="focus-outline mb-2 mt-8 flex hover:opacity-75" onclick="
     history.back()
     ">
@@ -30,13 +29,21 @@ import { getReadingTime } from "~/utils/readingTime";
     </button>
   </div>
 
+  <!-- DONT constrain the width here -->
   <main id="main-content">
-    <h1 class="post-title">{title}</h1>
-    <Datetime datetime={pubDatetime} size="lg" className="my-2" />
-    <!-- TODO: get this to sit visually on the same line as the date time  -->
-    <p>{getReadingTime(post)} minutes to read</p>
+    <!-- Add a `custom-width` component (review if this is correct or whether to just use a div) and control the width on it -->
+    <div class="custom-width mx-auto">
+      <h1 class="post-title">{title}</h1>
+      <PostTimeAndReadingTime
+        postBody={post.body}
+        datetime={pubDatetime}
+        size="lg"
+        className="my-2"
+      />
+    </div>
 
-    <article id="article" role="article" class="prose mx-auto mt-8 max-w-3xl">
+    <article id="article" role="article" class="holy-grail prose mx-auto mt-8">
+      <!-- <article id="article" role="article" class="prose mx-auto mt-8 max-w-3xl"> -->
       <Content />
     </article>
 
@@ -47,9 +54,19 @@ import { getReadingTime } from "~/utils/readingTime";
 </Layout>
 
 <style>
-  main {
-    @apply mx-auto w-full max-w-3xl px-4 pb-12;
+  /* .prose {
+    max-width: unset;
+  } */
+
+  .custom-width {
+    max-width: min(65ch, calc(100% - 64px));
   }
+  main {
+    @apply pb-12;
+  }
+  /* main {
+    @apply mx-auto w-full max-w-3xl px-4 pb-12;
+  } */
   .post-title {
     @apply text-2xl font-semibold text-skin-accent;
   }
