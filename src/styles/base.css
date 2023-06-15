@@ -29,8 +29,6 @@
     display: block;
   }
   body {
-    /* TODO: replace `font-mono` with Roboto! */
-    /* @apply flex min-h-screen flex-col bg-skin-fill font-mono text-skin-base  */
     @apply flex min-h-screen flex-col bg-skin-fill font-roboto text-skin-base 
     selection:bg-skin-accent selection:bg-opacity-70 selection:text-skin-inverted;
   }

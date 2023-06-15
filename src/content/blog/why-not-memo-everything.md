@@ -1,7 +1,7 @@
 ---
 author: Lance Jeffers
 pubDatetime: 2021-02-20T15:57:52.737Z
-title: Why not wrap everything in React.memo?
+title: Why not wrap everything in React.memo
 featured: true
 ogImage: ""
 tags:
