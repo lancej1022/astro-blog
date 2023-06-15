@@ -4,7 +4,7 @@ export const SITE: Site = {
   website: "https://lancejeffers.com/",
   author: "Lance Jeffers",
   desc: "A minimal, responsive and SEO-friendly Astro blog theme.",
-  title: "Lance Jeffers Blog",
+  title: "Lance Jeffers",
   ogImage: "astropaper-og.jpg",
   lightAndDarkMode: true,
   postPerPage: 4, // TODO: this causes errors if setting to a number larger than total # of posts

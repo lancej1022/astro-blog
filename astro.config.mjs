@@ -8,6 +8,9 @@ import sitemap from "@astrojs/sitemap";
 import { SITE } from "./src/config";
 
 export default defineConfig({
+  experimental: {
+    assets: true,
+  },
   site: SITE.website,
   integrations: [
     tailwind({
