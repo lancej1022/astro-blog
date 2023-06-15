@@ -1,7 +1,7 @@
 ---
 import { LOGO_IMAGE, SITE } from "~/config";
-import Hr from "./Hr.astro";
-import LinkButton from "./LinkButton.astro";
+import Hr from "~/components/Hr.astro";
+import LinkButton from "~/components/LinkButton.astro";
 
 import logoPNG from "/assets/logo.png";
 import logoSVG from "/assets/logo.svg";
@@ -19,6 +19,7 @@ const navItemToHighlight = navOptions.has(pathSegments[0] ?? "") && pathSegments
       <a rel="prefetch" href="/" class="logo w-full">
         {
           LOGO_IMAGE.enable ? (
+            // @ts-expect-error TODO: fix the TS error here on `src` attribute
             <img
               src={LOGO_IMAGE.svg ? logoSVG : logoPNG}
               alt="AstroPaper Logo"

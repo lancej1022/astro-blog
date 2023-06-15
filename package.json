@@ -15,7 +15,8 @@
     "prepare": "husky install",
     "start": "astro dev",
     "sync": "astro sync",
-    "test": "npx playwright test"
+    "test": "npx playwright test",
+    "test:watch": "npx playwright test --ui"
   },
   "dependencies": {
     "@astrojs/mdx": "^0.19.7",

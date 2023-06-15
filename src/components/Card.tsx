@@ -1,13 +1,14 @@
-import Datetime from "./Datetime";
+import PostTimeAndReadingTime from "./Datetime";
 import type { BlogFrontmatter } from "~/content/_schemas";
 
 export interface Props {
   href?: string;
+  postBody: string;
   frontmatter: BlogFrontmatter;
   secHeading?: boolean;
 }
 
-export default function Card({ href, frontmatter, secHeading = true }: Props) {
+export default function Card({ href, postBody, frontmatter, secHeading = true }: Props) {
   const { title, pubDatetime, description } = frontmatter;
   return (
     <li class="my-6">
@@ -22,7 +23,7 @@ export default function Card({ href, frontmatter, secHeading = true }: Props) {
           <h3 class="text-lg font-medium decoration-dashed hover:underline">{title}</h3>
         )}
       </a>
-      <Datetime datetime={pubDatetime} />
+      <PostTimeAndReadingTime postBody={postBody} datetime={pubDatetime} />
       <p>{description}</p>
     </li>
   );

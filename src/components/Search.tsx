@@ -42,7 +42,7 @@ export default function SearchBar(props: Props) {
 
   // TOOO: replicate the search params effect from https://github.com/satnaing/astro-paper/blob/main/src/components/Search.tsx#L44
   const fuse = new Fuse(props.searchList, {
-    keys: ["title", "description", "tags"], // TODO: I added "tags" to the template -- does this cause any issues?
+    keys: ["title", "description", "tags"], // TODO: Ensure all searchable properties are properly accounted for here
     includeMatches: true,
     minMatchCharLength: 2,
     threshold: 0.2,
@@ -50,7 +50,6 @@ export default function SearchBar(props: Props) {
 
   return (
     <>
-      {/* TODO: fix the a11y by not nesting the label */}
       <label class="relative block">
         <span class="absolute inset-y-0 left-0 flex items-center pl-2 opacity-75">
           <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -72,7 +71,7 @@ export default function SearchBar(props: Props) {
       </label>
 
       {/* @ts-expect-error figure out this ts issue */}
-      {inputRef?.value.length > 1 && (
+      {inputRef?.value.length > 0 && (
         <div class="mt-8">
           Found {searchResults?.length}
           {searchResults?.length === 1 ? " result" : " results"} for '
@@ -91,3 +90,8 @@ export default function SearchBar(props: Props) {
     </>
   );
 }
+/**
+ * I dont think this can become an Astro component because of the `For` component -- you need SOME way to easily render an Astro `Card` for each component unless you want to make some sort of vanilla JS version thats a massive pain to deal with.
+ *
+ * Alternatively, could probably use Web components since they can be rendered on server and client, unlike Astro JSX (JSX w/ Solid does work though, hence sticking with this)
+ */

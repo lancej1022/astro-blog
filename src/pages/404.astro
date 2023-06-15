@@ -1,11 +1,11 @@
 ---
 import { SITE } from "~/config";
-import Layout from "~/layouts/Layout.astro";
+import BaseLayout from "~/layouts/BaseLayout/BaseLayout.astro";
 
 import LinkButton from "~/components/LinkButton.astro";
 ---
 
-<Layout title={`404 Not Found | ${SITE.title}`}>
+<BaseLayout title={`404 Not Found | ${SITE.title}`}>
   <main id="main-content">
     <div class="not-found-wrapper">
       <h1>404</h1>
@@ -16,7 +16,7 @@ import LinkButton from "~/components/LinkButton.astro";
       </LinkButton>
     </div>
   </main>
-</Layout>
+</BaseLayout>
 
 <style>
   #main-content {

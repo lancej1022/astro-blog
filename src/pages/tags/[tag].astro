@@ -1,6 +1,6 @@
 ---
 import { CollectionEntry, getCollection } from "astro:content";
-import Layout from "~/layouts/Layout.astro";
+import BaseLayout from "~/layouts/BaseLayout/BaseLayout.astro";
 import Main from "~/layouts/Main.astro";
 import Card from "~/components/Card";
 import getUniqueTags from "~/utils/getUniqueTags";
@@ -33,10 +33,10 @@ const posts = await getCollection("blog", ({ data }) => !data.draft);
 const tagPosts = getPostsByTag(posts, tag);
 ---
 
-<Layout title={`Tag:${tag} | ${SITE.title}`}>
+<BaseLayout title={`Tag:${tag} | ${SITE.title}`}>
   <Main pageTitle={`Tag:${tag}`} pageDesc={`All the articles with the tag "${tag}".`}>
     <ul>
       {tagPosts.map(({ data }) => <Card href={`/posts/${slugify(data)}`} frontmatter={data} />)}
     </ul>
   </Main>
-</Layout>
+</BaseLayout>

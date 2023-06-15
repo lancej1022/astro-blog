@@ -1,9 +1,7 @@
 ---
 import { SITE } from "~/config";
-import Layout from "~/layouts/Layout.astro";
+import BaseLayout from "~/layouts/BaseLayout/BaseLayout.astro";
 import Main from "~/layouts/Main.astro";
-import Header from "~/components/Header.astro";
-import Footer from "~/components/Footer.astro";
 import Card from "~/components/Card";
 import LinkButton from "~/components/LinkButton.astro";
 import slugify from "~/utils/slugify";
@@ -21,10 +19,14 @@ const prev = pageNum > 1 ? "" : "disabled";
 const next = pageNum < totalPages ? "" : "disabled";
 ---
 
-<Layout title={`Posts | ${SITE.title}`}>
+<BaseLayout title={`Posts | ${SITE.title}`}>
   <Main pageTitle="Posts" pageDesc="All the articles I've posted.">
     <ul>
-      {posts.map(({ data }) => <Card href={`/posts/${slugify(data)}`} frontmatter={data} />)}
+      {
+        posts.map(({ body, data }) => (
+          <Card postBody={body} href={`/posts/${slugify(data)}`} frontmatter={data} />
+        ))
+      }
     </ul>
   </Main>
 
@@ -56,7 +58,7 @@ const next = pageNum < totalPages ? "" : "disabled";
       </nav>
     )
   }
-</Layout>
+</BaseLayout>
 
 <style>
   .pagination-wrapper {

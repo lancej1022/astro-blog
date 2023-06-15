@@ -1,7 +1,7 @@
 ---
 import { SITE } from "~/config";
 import Breadcrumbs from "~/components/Breadcrumbs.astro";
-import Layout from "./Layout.astro";
+import BaseLayout from "./BaseLayout/BaseLayout.astro";
 
 export interface Props {
   frontmatter: {
@@ -13,7 +13,7 @@ export interface Props {
 const { frontmatter } = Astro.props;
 ---
 
-<Layout title={`${frontmatter.title} | ${SITE.title}`}>
+<BaseLayout title={`${frontmatter.title} | ${SITE.title}`}>
   <Breadcrumbs />
   <main id="main-content">
     <section id="about" class="prose mb-28 max-w-3xl prose-img:border-0">
@@ -21,4 +21,4 @@ const { frontmatter } = Astro.props;
       <slot />
     </section>
   </main>
-</Layout>
+</BaseLayout>

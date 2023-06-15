@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import Layout from "~/layouts/Layout.astro";
+import BaseLayout from "~/layouts/BaseLayout/BaseLayout.astro";
 import LinkButton from "~/components/LinkButton.astro";
 import Hr from "~/components/Hr.astro";
 import Card from "~/components/Card";
@@ -14,7 +14,7 @@ const mostRecentFeaturedPost = sortedPosts.find(({ data }) => data.featured);
 const numberOfRecentPostsToShow = 4;
 ---
 
-<Layout>
+<BaseLayout>
   <main id="main-content">
     {
       mostRecentFeaturedPost && (
@@ -24,6 +24,7 @@ const numberOfRecentPostsToShow = 4;
             <h2>Featured Post</h2>
             <ul>
               <Card
+                postBody={mostRecentFeaturedPost.body}
                 href={`/posts/${slugify(mostRecentFeaturedPost.data)}`}
                 frontmatter={mostRecentFeaturedPost.data}
                 secHeading={false}
@@ -39,10 +40,15 @@ const numberOfRecentPostsToShow = 4;
       <ul>
         {
           sortedPosts.map(
-            ({ data }, index) =>
+            ({ data, body }, index) =>
               index < numberOfRecentPostsToShow &&
               data !== mostRecentFeaturedPost?.data && (
-                <Card href={`/posts/${slugify(data)}`} frontmatter={data} secHeading={false} />
+                <Card
+                  postBody={body}
+                  href={`/posts/${slugify(data)}`}
+                  frontmatter={data}
+                  secHeading={false}
+                />
               )
           )
         }
@@ -59,7 +65,7 @@ const numberOfRecentPostsToShow = 4;
       </div>
     </section>
   </main>
-</Layout>
+</BaseLayout>
 
 <style>
   /* ===== Hero Section ===== */
