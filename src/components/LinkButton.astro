@@ -11,6 +11,7 @@ const { href, className, ariaLabel, title, disabled = false } = Astro.props;
 ---
 
 <a
+  rel="prefetch"
   href={disabled ? "#" : href}
   tabindex={disabled ? "-1" : "0"}
   class={`group inline-block ${className}`}
