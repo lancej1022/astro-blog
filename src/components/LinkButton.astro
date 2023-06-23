@@ -14,7 +14,7 @@ const { href, className, ariaLabel, title, disabled = false } = Astro.props;
   rel="prefetch"
   href={disabled ? "#" : href}
   tabindex={disabled ? "-1" : "0"}
-  class={`group inline-block ${className}`}
+  class={`hover:text-skin-accent group inline-block ${className}`}
   aria-label={ariaLabel}
   title={title}
   aria-disabled={disabled}
@@ -22,8 +22,4 @@ const { href, className, ariaLabel, title, disabled = false } = Astro.props;
   <slot />
 </a>
 
-<style>
-  a {
-    @apply hover:text-skin-accent;
-  }
-</style>
+<style></style>
