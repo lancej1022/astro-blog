@@ -31,7 +31,7 @@ const ogUrl = new URL(ogImage ? ogImage : `${title}.png`, Astro.url.origin).href
   <main id="main-content">
     <!-- Add a `custom-width` component (review if this is correct or whether to just use a div) and control the width on it -->
     <div class="custom-width mx-auto">
-      <h1 class="post-title">{title}</h1>
+      <h1 class="text-2xl font-semibold text-skin-accent">{title}</h1>
       <!-- TODO: make this look better on mobile screen sizes -->
       <PostTimeAndReadingTime
         postBody={post.body}
@@ -45,7 +45,7 @@ const ogUrl = new URL(ogImage ? ogImage : `${title}.png`, Astro.url.origin).href
       <Content />
     </article>
 
-    <ul class="tags-container custom-width mx-auto">
+    <ul class="custom-width mx-auto my-8">
       {tags.map((tag) => <Tag name={slugifyStr(tag)} />)}
     </ul>
   </main>
@@ -54,17 +54,5 @@ const ogUrl = new URL(ogImage ? ogImage : `${title}.png`, Astro.url.origin).href
 <style>
   .custom-width {
     max-width: min(75ch, calc(100% - 64px));
-  }
-  /* main {
-    @apply pb-12;
-  } */
-  /* main {
-    @apply mx-auto w-full max-w-3xl px-4 pb-12;
-  } */
-  .post-title {
-    @apply text-2xl font-semibold text-skin-accent;
-  }
-  .tags-container {
-    @apply my-8;
   }
 </style>

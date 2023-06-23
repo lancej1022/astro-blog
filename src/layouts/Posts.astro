@@ -32,7 +32,7 @@ const next = pageNum < totalPages ? "" : "disabled";
 
   {
     totalPages > 1 && (
-      <nav class="pagination-wrapper" aria-label="Pagination">
+      <nav class="mb-8 mt-auto flex justify-center" aria-label="Pagination">
         <LinkButton
           disabled={prev === "disabled"}
           href={`/posts${pageNum - 1 !== 1 ? "/" + (pageNum - 1) : ""}`}
@@ -61,9 +61,6 @@ const next = pageNum < totalPages ? "" : "disabled";
 </BaseLayout>
 
 <style>
-  .pagination-wrapper {
-    @apply mb-8 mt-auto flex justify-center;
-  }
   .disabled {
     @apply pointer-events-none select-none opacity-50 hover:text-skin-base group-hover:fill-skin-base;
   }

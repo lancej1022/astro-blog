@@ -13,10 +13,18 @@ const navItemToHighlight = navOptions.has(pathSegments[0] ?? "") && pathSegments
 ---
 
 <header>
-  <a id="skip-to-content" href="#main-content">Skip to content</a>
-  <div class="nav-container">
-    <div class="top-nav-wrap">
-      <a rel="prefetch" href="/" class="logo w-full">
+  <a
+    id="skip-to-content"
+    class="absolute -top-full left-16 z-50 bg-skin-accent px-3 py-2 text-skin-inverted transition-all focus:top-4"
+    href="#main-content">Skip to content</a
+  >
+  <div class="mx-auto flex max-w-3xl flex-col items-center justify-between sm:flex-row">
+    <div class="relative flex w-full items-start justify-between p-4 sm:items-center sm:py-8">
+      <a
+        rel="prefetch"
+        href="/"
+        class="absolute w-full py-1 text-xl font-semibold sm:static sm:text-2xl"
+      >
         {
           LOGO_IMAGE.enable ? (
             // @ts-expect-error TODO: fix the TS error here on `src` attribute
@@ -33,7 +41,8 @@ const navItemToHighlight = navOptions.has(pathSegments[0] ?? "") && pathSegments
       </a>
       <nav id="nav-menu">
         <button
-          class="hamburger-menu focus-outline"
+          class="focus-outline self-end p-2 sm:hidden"
+          id="hamburger-menu"
           aria-label="Open Menu"
           aria-expanded="false"
           aria-controls="menu-items"
@@ -94,7 +103,7 @@ const navItemToHighlight = navOptions.has(pathSegments[0] ?? "") && pathSegments
               SITE.lightAndDarkMode && (
                 <button
                   id="theme-btn"
-                  class="focus-outline"
+                  class="focus-outline p-3 sm:p-1"
                   title="Toggle light & dark mode"
                   aria-live="polite"
                 >
@@ -116,7 +125,9 @@ const navItemToHighlight = navOptions.has(pathSegments[0] ?? "") && pathSegments
               aria-label="rss feed"
               title="RSS Feed"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" class="rss-icon"
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6 scale-110 hover:fill-skin-accent sm:scale-125"
                 ><path d="M19 20.001C19 11.729 12.271 5 4 5v2c7.168 0 13 5.832 13 13.001h2z"
                 ></path><path d="M12 20.001h2C14 14.486 9.514 10 4 10v2c4.411 0 8 3.589 8 8.001z"
                 ></path><circle cx="6" cy="18" r="2"></circle>
@@ -131,28 +142,7 @@ const navItemToHighlight = navOptions.has(pathSegments[0] ?? "") && pathSegments
 </header>
 
 <style>
-  .rss-link svg {
-    @apply hover:fill-skin-accent;
-  }
-  .rss-icon {
-    @apply h-6 w-6 scale-110 sm:scale-125;
-  }
-  #skip-to-content {
-    @apply absolute -top-full left-16 z-50 bg-skin-accent px-3 py-2 text-skin-inverted transition-all focus:top-4;
-  }
-  .nav-container {
-    @apply mx-auto flex max-w-3xl flex-col items-center justify-between sm:flex-row;
-  }
-  .top-nav-wrap {
-    @apply relative flex w-full items-start justify-between p-4 sm:items-center sm:py-8;
-  }
-  .logo {
-    @apply absolute py-1 text-xl font-semibold sm:static sm:text-2xl;
-  }
-  .hamburger-menu {
-    @apply self-end p-2 sm:hidden;
-  }
-  .hamburger-menu svg {
+  #hamburger-menu svg {
     @apply h-6 w-6 scale-125 fill-skin-base;
   }
 
@@ -188,9 +178,7 @@ const navItemToHighlight = navOptions.has(pathSegments[0] ?? "") && pathSegments
   nav button svg {
     @apply h-6 w-6 fill-skin-base hover:fill-skin-accent;
   }
-  #theme-btn {
-    @apply p-3 sm:p-1;
-  }
+
   #theme-btn svg {
     @apply scale-125 hover:rotate-12 sm:scale-100;
   }
@@ -210,11 +198,16 @@ const navItemToHighlight = navOptions.has(pathSegments[0] ?? "") && pathSegments
 </style>
 
 <script>
-  const menuBtn = document.querySelector(".hamburger-menu");
+  const menuBtn = document.querySelector("#hamburger-menu");
   const menuIcon = document.querySelector(".menu-icon");
   const menuItems = document.querySelector("#menu-items");
 
-  menuBtn?.addEventListener("click", () => {
+  if (!menuBtn)
+    throw Error(
+      "The hamburger menu button was not found in the DOM! Something has gone horribly wrong"
+    );
+
+  menuBtn.addEventListener("click", () => {
     const menuExpanded = menuBtn.getAttribute("aria-expanded") === "true";
     menuIcon?.classList.toggle("is-active");
     menuBtn.setAttribute("aria-expanded", menuExpanded ? "false" : "true");

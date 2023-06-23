@@ -20,7 +20,7 @@ const numberOfRecentPostsToShow = 4;
       mostRecentFeaturedPost && (
         <>
           <section id="featured">
-            {/* TODO: Put the featured post thing OVER the image, similar to how Ive already done on LanceJeffers.com */}
+            {/* TODO: Put the featured post thing OVER a post's header image, similar to how Ive already done on LanceJeffers.com */}
             <h2>Featured Post</h2>
             <ul>
               <Card
@@ -53,7 +53,7 @@ const numberOfRecentPostsToShow = 4;
           )
         }
       </ul>
-      <div class="all-posts-btn-wrapper">
+      <div class="my-8 text-center">
         <LinkButton href="/posts">
           All Posts
           <svg xmlns="http://www.w3.org/2000/svg"
@@ -68,30 +68,6 @@ const numberOfRecentPostsToShow = 4;
 </BaseLayout>
 
 <style>
-  /* ===== Hero Section ===== */
-  #hero {
-    @apply pb-6 pt-8;
-  }
-  #hero h1 {
-    @apply my-4 inline-block text-3xl font-bold sm:my-8 sm:text-5xl;
-  }
-  #hero .rss-link {
-    @apply mb-6;
-  }
-  #hero .rss-icon {
-    @apply mb-2 h-6 w-6 scale-110 fill-skin-accent sm:mb-3 sm:scale-125;
-  }
-  #hero p {
-    @apply my-2;
-  }
-  .social-wrapper {
-    @apply mt-4 flex flex-col sm:flex-row sm:items-center;
-  }
-  .social-links {
-    @apply mb-1 mr-2 whitespace-nowrap sm:mb-0;
-  }
-
-  /* ===== Featured & Recent Posts Sections ===== */
   #featured,
   #recent-posts {
     @apply pb-6 pt-12;
@@ -99,8 +75,5 @@ const numberOfRecentPostsToShow = 4;
   #featured h2,
   #recent-posts h2 {
     @apply text-2xl font-semibold tracking-wide;
-  }
-  .all-posts-btn-wrapper {
-    @apply my-8 text-center;
   }
 </style>
