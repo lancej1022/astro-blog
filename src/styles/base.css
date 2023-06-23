@@ -52,7 +52,7 @@
     @apply /* */ 
     /* */ 
     /* */ prose-headings:!mb-3
-    prose-headings:!text-skin-base prose-h3:italic
+    prose-headings:!text-skin-accent prose-h3:italic
     prose-p:!text-skin-base prose-a:!text-skin-base
     prose-a:!decoration-dashed prose-a:underline-offset-8
     hover:prose-a:text-skin-accent
@@ -70,7 +70,6 @@
     prose-th:border prose-th:border-skin-line  prose-td:border
     prose-td:border-skin-line 
     prose-img:mx-auto prose-img:!mt-2 
-     prose-img:border-2 prose-img:border-skin-line
     prose-hr:!border-skin-line;
   }
   .prose a {
@@ -138,13 +137,21 @@
   grid-column-gap: 32px;
   max-width: unset;
 }
-
 .holy-grail > * {
   grid-column: 2;
 }
-
-.full-bleed {
+/* 
+  markdown automatically wraps everything in `<p>` tags, so rendering an image with `.full-bleed` alone
+  wont actually cause the image to span 100% width, because the wrapping `p` tag would still have 
+  a restricted width of its own.
+  To get around that, we target any `p` tag that has a .full-width element within it and ensure that the
+  paragraph itself winds up spanning the proper grid columns and the nested `.full-bleed` has its width set to 100%
+*/
+p:has(.full-bleed) {
   width: 100%;
 
   grid-column: 1 / 4;
+}
+.full-bleed {
+  width: 100%;
 }
