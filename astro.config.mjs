@@ -23,7 +23,9 @@ export default defineConfig({
     }),
     sitemap(),
     solidJs(),
-    prefetch(),
+    prefetch({
+      selector: "a",
+    }),
     compress(),
   ],
   markdown: {
