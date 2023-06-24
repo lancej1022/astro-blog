@@ -20,11 +20,7 @@ const navItemToHighlight = navOptions.has(pathSegments[0] ?? "") && pathSegments
   >
   <div class="mx-auto flex max-w-3xl flex-col items-center justify-between sm:flex-row">
     <div class="relative flex w-full items-start justify-between p-4 sm:items-center sm:py-8">
-      <a
-        rel="prefetch"
-        href="/"
-        class="absolute w-full py-1 text-xl font-semibold sm:static sm:text-2xl"
-      >
+      <a href="/" class="absolute w-full py-1 text-xl font-semibold sm:static sm:text-2xl">
         {
           LOGO_IMAGE.enable ? (
             // @ts-expect-error TODO: fix the TS error here on `src` attribute
@@ -68,19 +64,13 @@ const navItemToHighlight = navOptions.has(pathSegments[0] ?? "") && pathSegments
         </button>
         <ul id="menu-items" class="display-none sm:flex">
           <li>
-            <a rel="prefetch" href="/posts" class={navItemToHighlight === "posts" ? "active" : ""}>
-              Posts</a
-            >
+            <a href="/posts" class={navItemToHighlight === "posts" ? "active" : ""}> Posts</a>
           </li>
           <li>
-            <a rel="prefetch" href="/tags" class={navItemToHighlight === "tags" ? "active" : ""}>
-              Tags</a
-            >
+            <a href="/tags" class={navItemToHighlight === "tags" ? "active" : ""}> Tags</a>
           </li>
           <li>
-            <a rel="prefetch" href="/about" class={navItemToHighlight === "about" ? "active" : ""}>
-              About</a
-            >
+            <a href="/about" class={navItemToHighlight === "about" ? "active" : ""}> About</a>
           </li>
           <li>
             <LinkButton
