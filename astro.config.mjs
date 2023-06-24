@@ -7,6 +7,8 @@ import sitemap from "@astrojs/sitemap";
 import { SITE } from "./src/config";
 import prefetch from "@astrojs/prefetch";
 
+import compress from "astro-compress";
+
 // https://astro.build/config
 export default defineConfig({
   experimental: {
@@ -22,6 +24,7 @@ export default defineConfig({
     sitemap(),
     solidJs(),
     prefetch(),
+    compress(),
   ],
   markdown: {
     remarkPlugins: [
@@ -39,7 +42,7 @@ export default defineConfig({
     },
     extendDefaultPlugins: true,
   },
-  compressHTML: true,
+  // compressHTML: true,
   // TODO: while this definitely helps with network sizes, does it have a net negative impact on perf by increasing browser parsing work?
   vite: {
     optimizeDeps: {
