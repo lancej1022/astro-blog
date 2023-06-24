@@ -48,6 +48,16 @@ I haven't used a ton of other static site generators besides Astro and NextJS, s
 
 I found it extremely easy to get up and running with this, and it makes authoring markdown content locally (as opposed to using a Content Management System) a much easier experience.
 
+### A large variety of templates available
+
+One thing that I knew I wanted to do for my blog rewrite was use a premade template for the layout and styles. While I was very satisfied with the look and feel of my previous blog, it had taken a decent amount of time to create even though I was using MUI (which has prebuilt components for almost everything). Since I was ditching React for the rewrite, I knew I'd have to recreate the entire blog from scratch if I wanted to preserve it.
+
+In the past, this would have been a really appealing endeavor to me but nowadays I wanted to focus primarily on just getting up and running as quickly as possible while delivering the best performance I could muster. Thankfully, the Astro docs link to a large variety of open source templates for Astro and I was able to find one that mostly fit my needs named Astro Paper.
+
+<!-- TODO: link to Astro Paper on GitHub -->
+
+Linking to open source templates isn't necessarily unique to Astro, but I do think it's an important benefit to consider when a developer is weighing their options across the various static site generators out there.
+
 ## The Bad
 
 There are a lot of other benefits that Astro offers, but I've sufficiently covered the main areas that stood out to me as a first-time Astro user. Now, I'd like to focus on the areas where I felt Astro was missing the mark.
