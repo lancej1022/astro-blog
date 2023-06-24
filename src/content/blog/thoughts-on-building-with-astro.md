@@ -109,9 +109,9 @@ Regardless of whether you're building a multi-page application (MPA) or a single
 
 <!-- TODO: link to webpack docs or something explaining minification -->
 
-One of the simplest ways to achieve this is "minifying" your output build files. I won't go more into exactly how minification works although you can read up on it here if you want, but the main thing to point out is that this is pretty much something _every_ website should do.
+One of the simplest ways to achieve this is "minifying" your output build files. I won't go more into exactly how minification works although you can read up on it here if you want, but the main thing to point out is that this is pretty much something _every_ website should do in order to improve performance.
 
-And yet surprisingly, Astro doesn't do it for all of your assets by default. It definitely does it for some of them -- when I checked my output JavaScript files I saw that things had definitely been minified properly. But when I looked into the HTML and CSS files, it didn't seem like they had been minified to the extent that other frameworks do.
+And yet surprisingly, Astro doesn't do it for all of your assets by default. It definitely does it for some of them -- when I checked my output JavaScript files I saw that most of them had been minified properly. But when I looked into the HTML and CSS files, it didn't seem like they had been minified to the extent that other frameworks do.
 
 Again, I want to assume that the Astro team either has a good reason for not doing more here within the framework itself _or_ it's a problem they're aware of and intend to address, but I do think that this is another small shortcoming of Astro at the current time. Hopefully in the future this drawback will no longer apply to new Astro sites.
 
@@ -119,6 +119,4 @@ Again, I want to assume that the Astro team either has a good reason for not doi
 
 ## The End Result
 
-Despite some of the drawbacks I mentioned earlier, the overall experience with Astro is phenomenal for building static sites. It feels great to deliver a lightning fast user experience while enjoying strong type safety within my markdown files. The project configuration is reasonably simple, and most things are easy to find simply by searching the docs.
-
-Most, if not all, of the drawbacks are already being worked on by the Astro team, so I expect that most of the optimizations I had to manually wire up will be enabled by default for new Astro sites in the future.
+Despite some of the drawbacks I mentioned earlier, the overall experience with Astro is great for building static sites. The project configuration is reasonably simple, and most of the things a developer will care about are covered by the official docs. Developers looking to fully optimize their sites performance may experience some frustration by the seemingly obvious optimizations that Astro _doesn't_ do for you automatically, but overall the experience was solid. Unless I was planning to build a highly dynamic site, in which case I would build with something like Solid Start, I would probably recommend Astro as the default way to build multipage JavaScript applications.
