@@ -31,7 +31,7 @@ export default function PostTimeAndReadingTime({
           <FormattedDatetime datetime={datetime} />
         </span>
       </span>
-      <span>{getReadingTime(postBody)} minutes to read</span>
+      {postBody.length > 0 && <span>{getReadingTime(postBody)} minutes to read</span>}
     </div>
   );
 }

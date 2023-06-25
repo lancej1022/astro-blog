@@ -48,16 +48,13 @@
     stroke-current stroke-2 opacity-90 group-hover:fill-transparent 
     sm:scale-110;
   }
+
   .prose {
-    @apply /* */ 
-    /* */ 
-    /* */ prose-headings:!mb-3
-    prose-headings:!text-skin-accent prose-h3:italic
+    @apply prose-headings:!mb-3 prose-headings:!mt-3
+    prose-headings:!text-skin-accent
     prose-p:!text-skin-base prose-a:!text-skin-base
     prose-a:!decoration-dashed prose-a:underline-offset-8
-    hover:prose-a:text-skin-accent
-
-    
+    hover:prose-a:text-skin-accent    
     prose-blockquote:!border-l-skin-accent prose-blockquote:border-opacity-50 
     prose-blockquote:opacity-80 prose-figcaption:!text-skin-base prose-figcaption:opacity-70 
     prose-strong:!text-skin-base prose-code:rounded

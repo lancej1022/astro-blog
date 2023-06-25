@@ -17,8 +17,6 @@ export default defineConfig({
   reporter: 'html',
   /* Retry on CI only */
   retries: process.env.CI ? 1 : 0,
-  // TODO: scan the base dir so that tests can be colocated
-  // testDir: './tests',
   testDir: './src',
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : '50%',
@@ -38,7 +36,6 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
 
-    // TODO: why is this blocked by Freedom locally lol
     // {
     //   name: 'firefox',
     //   use: { ...devices['Desktop Firefox'] },
@@ -72,7 +69,7 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'npm run dev', // TODO: switch to npm run preview
+    command: 'npm run dev', 
     url: 'http://localhost:3000/',
     timeout: 120 * 1000,
     reuseExistingServer: !process.env.CI,

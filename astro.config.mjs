@@ -45,7 +45,6 @@ export default defineConfig({
     extendDefaultPlugins: true,
   },
   compressHTML: true,
-  // TODO: while this definitely helps with network sizes, does it have a net negative impact on perf by increasing browser parsing work?
   vite: {
     optimizeDeps: {
       exclude: ["@resvg/resvg-js"],

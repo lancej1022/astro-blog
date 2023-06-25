@@ -1,11 +1,7 @@
 ---
-import { LOGO_IMAGE, SITE } from "~/config";
+import { SITE } from "~/config";
 import Hr from "~/components/Hr.astro";
 import LinkButton from "~/components/LinkButton.astro";
-
-import logoPNG from "/assets/logo.png";
-import logoSVG from "/assets/logo.svg";
-
 const navOptions = new Set(["posts", "tags", "about", "search"]);
 
 const pathSegments = Astro.url.pathname.split("/").filter(Boolean);
@@ -21,19 +17,7 @@ const navItemToHighlight = navOptions.has(pathSegments[0] ?? "") && pathSegments
   <div class="mx-auto flex max-w-3xl flex-col items-center justify-between sm:flex-row">
     <div class="relative flex w-full items-start justify-between p-4 sm:items-center sm:py-8">
       <a href="/" class="absolute w-full py-1 text-xl font-semibold sm:static sm:text-2xl">
-        {
-          LOGO_IMAGE.enable ? (
-            // @ts-expect-error TODO: fix the TS error here on `src` attribute
-            <img
-              src={LOGO_IMAGE.svg ? logoSVG : logoPNG}
-              alt="AstroPaper Logo"
-              width={LOGO_IMAGE.width}
-              height={LOGO_IMAGE.height}
-            />
-          ) : (
-            SITE.title
-          )
-        }
+        {SITE.title}
       </a>
       <nav id="nav-menu">
         <button

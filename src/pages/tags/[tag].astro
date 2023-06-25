@@ -36,7 +36,11 @@ const tagPosts = getPostsByTag(posts, tag);
 <BaseLayout title={`Tag:${tag} | ${SITE.title}`}>
   <Main pageTitle={`Tag:${tag}`} pageDesc={`All the articles with the tag "${tag}".`}>
     <ul>
-      {tagPosts.map(({ data }) => <Card href={`/posts/${slugify(data)}`} frontmatter={data} />)}
+      {
+        tagPosts.map(({ data }) => (
+          <Card postBody="" href={`/posts/${slugify(data)}`} frontmatter={data} />
+        ))
+      }
     </ul>
   </Main>
 </BaseLayout>

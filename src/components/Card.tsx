@@ -13,7 +13,6 @@ export default function Card({ href, postBody, frontmatter, secHeading = true }:
   return (
     <li class="my-6">
       <a
-        // TODO: use a smarter fallback
         href={href ?? "#"}
         class="inline-block text-lg font-medium text-skin-accent decoration-dashed underline-offset-4 focus-visible:no-underline focus-visible:underline-offset-0"
       >

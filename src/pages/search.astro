@@ -16,8 +16,8 @@ const searchList = posts.map(({ data }) => ({
 }));
 ---
 
-<BaseLayout title={`SearchComponent | ${SITE.title}`}>
-  <Main pageTitle="SearchComponent" pageDesc="search any article ...">
+<BaseLayout title={`Search ${SITE.title}`}>
+  <Main pageTitle="Search all Posts" pageDesc="">
     <SearchComponent client:load searchList={searchList} />
   </Main>
 </BaseLayout>
