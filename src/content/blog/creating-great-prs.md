@@ -11,7 +11,7 @@ description: How to craft great pull requests
 
 There was a meme I saw recently which described so-called “Shopping Cart Theory”. It's an amusing spin on the moral dilemma from philosophy known as the The Trolley Problem, which is also its own amusing meme (because in the Internet Age everything has to become a meme). The obvious question the memes poses is basically: are you a moral person?
 
-![A starry night sky.](../../assets/trolley-problem.png)
+![Trolley problem](../../assets/trolley-problem.png)
 
 <!-- <img src="/_astro/trolley-problem.png" alt="A starry night sky."> -->
 
