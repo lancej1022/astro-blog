@@ -17,9 +17,7 @@ export default defineConfig({
   site: SITE.website,
   integrations: [
     tailwind({
-      config: {
-        applyBaseStyles: false,
-      },
+      applyBaseStyles: false,
     }),
     sitemap(),
     solidJs(),
@@ -47,7 +45,7 @@ export default defineConfig({
   compressHTML: true,
   vite: {
     optimizeDeps: {
-      exclude: ["@resvg/resvg-js"],
+      exclude: ["@resvg/resvg-js", "fsevents"],
     },
   },
 });

@@ -69,6 +69,14 @@
     prose-img:mx-auto prose-img:!mt-2 
     prose-hr:!border-skin-line;
   }
+
+  .prose h2 > a,
+  .prose h3 > a,
+  .prose h4 > a,
+  .prose h5 > a,
+  .prose h6 > a {
+    @apply !text-skin-accent;
+  }
   .prose a {
     @apply hover:!text-skin-accent;
   }

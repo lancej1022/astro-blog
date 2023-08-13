@@ -14,11 +14,11 @@ I've been wanting to get into writing blogs again but kept putting it off becaus
 
 ![Astro logo](../../assets/astro-logo-light.png)
 
-## The Good
+<h2 id="the-good"><a href="#the-good">The Good</a></h2>
 
 Astro gets a lot of things right when it comes to building multi-page applications. It's easy to get started with, most of the default choices are ones that I agree with, and everything about it is pretty fast. There are a few key areas that I really wanted to highlight because I think they make Astro so good that it's probably the default way I would choose to build a static site.
 
-### Zero runtime JavaScript
+<h3 id="zero-runetime-javascript"><a href="#zero-runtime-javascript">Zero Runtime Javascript</a></h3>
 
 Considering that a blog is primarily made of static content, it makes sense that you shouldn't really need to ship much (if any) JavaScript to your site visitors. JavaScript should be used for adding interactivity to pages or adding functionality that HTML can't natively support very well (such as client-side routing), which means that a static site probably doesn't _need_ JavaScript.
 
@@ -31,10 +31,12 @@ Importantly, Astro does still allow you to ship JavaScript to the client via inl
 For this website, I wound up shipping a small amount of vanilla JS (<1kb) so that the pages can render the site in a light or dark theme, another bit of JS to support page prefetching, and lastly I shipped some Solid.js via Astro Islands to support client side search functionality on the [search page](/search).
 
 <!-- TODO: add captions for sighted users -->
+<!-- TODO: make this image zoomable on mobile devices somehow -->
+<!-- TODO: make full width -->
 
 ![Screenshot of Chrome's developer tools network panel showing a grand total of 2.1kb of JS loaded on the home page of lancejeffers.com](../../assets/total-js-on-blog-home.png)
 
-### Easy integration with your preferred UI library
+<h3 id="integrations"><a href="#integrations">Easy integration with your preferred UI library</a></h3>
 
 One of the great things about Astro islands is that the framework allows you to statically render any other UI framework of your choice. To me, this is one of the coolest things about Astro since building with Astro doesn't lock you into using _just_ Astro. If you prefer React and want to be able to leverage the vast ecosystem around it, you can totally write make some React components and render them as Astro islands. If you prefer a leaner, more performant framework like Solid.js or Svelte, the Astro build chain supports that as well.
 
@@ -42,7 +44,7 @@ This is a really welcome change when compared against generators like NextJS (Re
 
 All of the big players in the frontend space have easy to use Astro integrations, so you can author your UI components in whatever way makes the most sense to you.
 
-### JSX Support
+<h3 id="jsx-support"><a href="#jsx-support">JSX Support</a></h3>
 
 I'll be showing my bias a bit here, but part of the reason I wound up enjoying Astro so much is that it still supports JSX syntax. This means that you can still make reusable JavaScript components and render them directly in your HTML just like if you were authoring a React application, except those components wont actually ship any JavaScript to the client. Instead, Astro transpiles all of your JSX at build time into normal HTML.
 
@@ -50,21 +52,21 @@ For developers that have used JSX before, this probably doesnt seem like an impr
 
 ![Screenshot of Chrome's developer tools network panel showing a grand total of 2.1kb of JS loaded on the home page of lancejeffers.com](../../assets/sample-jsx-usage.png)
 
-### Typesafe Markdown
+<h3 id="typesafe-markdown"><a href="#typesafe-markdown">Typesafe Markdown</a></h3>
 
 I haven't used a ton of other static site generators besides Astro and NextJS, so this feature may not be overly unique. But regardless, I was very happy to learn that you can make your markdown typesafe very easily in Astro thanks to [Astro content collections](https://docs.astro.build/en/guides/content-collections/#defining-a-collection-schema). This helps you ensure that your markdown files are all following a required schema so that you don't accidentally try to generate a blog post from a markdown file that happens to be missing some required field, such as a a publication date.
 
 I found it extremely easy to get up and running with this, and it makes authoring markdown content locally (as opposed to using a Content Management System) a much easier experience.
 
-## Room For Improvements
+<h2 id="room-for-improvements"><a href="#room-for-improvements">Room For Improvements</a></h2>
 
 There are a lot of other benefits that Astro offers, but I've sufficiently covered the main areas that stood out to me as a first-time Astro user. Now, I'd like to focus on the areas where I felt Astro was missing the mark.
 
-### Fully optimizing the output build was not simple
+<h3 id="optimizing-output"><a href="#optimizing-output">Fully optimizing the output build was not simple</a></h3>
 
 For a framework that focuses primarily on static sites, I was surprised that Astro didn't deliver certain optimizations by default. Instead, I had to read through the documentation as well as some additional external sites to figure out how to get Astro to optimize things like fonts and images.
 
-#### Font Optimization
+<h4 id="font-optimization"><a href="#font-optimization">Font Optimization</a></h4>
 
 For individuals that have done web development on performant websites, you already know that ensuring the right font is available as soon as possible is critical if you want to avoid the dreaded Flash Of Unstyled Text (FOUT). For those that aren't familiar, FOUT occurs when the browser has fully parsed your CSS and HTML and then renders the page, but the fonts that your CSS relies on haven't finished loading in over the network. The end result is that the user sees the entire page render in a default font that is available on their device and then a short time later all of the text on the page gets rerendered using the intended font once the browser is done fetching it. This creates a bit of a jarring user experience and is a common issue for websites that load quickly.
 
@@ -76,7 +78,7 @@ I wound up using the [subfont npm package](https://www.npmjs.com/package/subfont
 
 The good news is that this setup definitely works and I was able to shave off >15kb thanks to the font subsetting while ensuring the page is fully rendered in <200ms on average _without_ showing the incorrect font at any point.
 
-<!-- TODO: make this a full width image for better visibility. Probably need to convert to MDX in order to specify a class name -->
+<!-- TODO: convert to MDX in order to add the `full-bleed` class name -->
 
 ![screenshot showing a reduction of roughly 15 kilobytes thanks to subsetting the font files](../../assets/network-improvements.png)
 
@@ -84,7 +86,7 @@ The downside to this approach is using an npm package to scan all of the output 
 
 I feel very strongly that any framework that wants to focus on creating highly performant sites needs to offer a solution for font-loading because it's such a common issue and it can be a tough problem to solve on your own. I'll give some credit to Astro because after searching the community Discord server I was able to see [some discussions around adding a solution to this problem directly into the framework](https://discord.com/channels/830184174198718474/872579324446928896/1046661154514145320), although it doesn't look like there has really been any progress on the matter since the initial discussion in late 2022.
 
-#### Images
+<h4 id="images"><a href="#images">Images</a></h4>
 
 Another area that felt a bit clunky to me was image optimization. Unlike font optimization, this is actually something that Astro does support natively which is nice. But I'm mentioning it within the "drawbacks" section primarily because it wasn't actually clear how to get it working.
 
@@ -94,7 +96,7 @@ To make matters a bit worse, _neither_ of the Astro image optimization tools are
 
 All that said, while it took me a bit to figure out the correct way to optimize my images I was at least glad that this was something baked into Astro. Similar to font optimization, ensuring that your images are performant is something that almost every website will need to handle and it's not something that's easy to get right if you're trying to do it manually.
 
-#### Prefetching links
+<h4 id="prefetching"><a href="#prefetching">Prefetching Links</a></h4>
 
 One big drawback to multi-page applications (MPAs) when compared against single-page applications (SPAs) is navigation. The default behavior in a MPA is to request all of the resources for a route after the user has already landed on that route. This is in contrast to a SPA, where you probably already have at least some amount of the code necessary for the next route downloaded. For example, if "route 1" and "route 2" both use the same header and footer code, then the SPA doesn't need to download any additional assets as the user navigates between those routes. But with a MPA architecture, the user is forced to fully download all assets for each page as they go from route to route and this can cause some performance drawbacks.
 
@@ -140,7 +142,7 @@ I can kind of understand this to an extent, since I can imagine there are a dece
 
 Again, I don't want to complain too much here because prefetching is something that Astro supports natively and it's not too hard to wire up, I just question whether the defaults the Astro team has chosen are conducive to ensuring that Astro sites are performant by default.
 
-## The End Result
+<h2 id="the-end-result"><a href="#the-end-result">The End Result</a></h2>
 
 Despite some of the drawbacks I mentioned earlier, the overall experience with Astro is great for building static sites. The project configuration is reasonably simple, and most of the things a developer will care about are covered by the official docs.
 
