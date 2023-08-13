@@ -18,7 +18,7 @@ I've been wanting to get into writing blogs again but kept putting it off becaus
 
 Astro gets a lot of things right when it comes to building multi-page applications. It's easy to get started with, most of the default choices are ones that I agree with, and everything about it is pretty fast. There are a few key areas that I really wanted to highlight because I think they make Astro so good that it's probably the default way I would choose to build a static site.
 
-<h3 id="zero-runetime-javascript"><a href="#zero-runtime-javascript">Zero Runtime Javascript</a></h3>
+<h3 id="zero-runtime-javascript"><a href="#zero-runtime-javascript">Zero Runtime Javascript</a></h3>
 
 Considering that a blog is primarily made of static content, it makes sense that you shouldn't really need to ship much (if any) JavaScript to your site visitors. JavaScript should be used for adding interactivity to pages or adding functionality that HTML can't natively support very well (such as client-side routing), which means that a static site probably doesn't _need_ JavaScript.
 
