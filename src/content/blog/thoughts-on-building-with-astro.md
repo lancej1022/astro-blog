@@ -10,25 +10,25 @@ tags:
 description: Astro is an increasingly popular multi-page application framework. Where does it shine, where can it improve?
 ---
 
-I've been wanting to get into writing blogs again but kept putting it off because I was unhappy with my existing blog site. As part of a recent rewrite, I chose to use Astro and wanted to write up my thoughts on the developer experience and where it shines (and where I think it can improve).
+I've been wanting to get into writing blogs again but kept putting it off because I was unhappy with the architecture of my site. As part of a recent rewrite, I chose to use Astro and wanted to write up my thoughts on the developer experience and where it shines (and where I think it can improve).
 
 ![Astro logo](../../assets/astro-logo-light.png)
 
 <h2 id="the-good"><a href="#the-good">The Good</a></h2>
 
-Astro gets a lot of things right when it comes to building multi-page applications. It's easy to get started with, most of the default choices are ones that I agree with, and everything about it is pretty fast. There are a few key areas that I really wanted to highlight because I think they make Astro so good that it's probably the default way I would choose to build a static site.
+Astro gets a lot of things right when it comes to building multi-page applications. It's easy to get started with, most of the default choices are ones that I agree with, and everything about it is pretty fast. Just to highlight a few areas that I found interesting...
 
 <h3 id="zero-runtime-javascript"><a href="#zero-runtime-javascript">Zero Runtime Javascript</a></h3>
 
-Considering that a blog is primarily made of static content, it makes sense that you shouldn't really need to ship much (if any) JavaScript to your site visitors. JavaScript should be used for adding interactivity to pages or adding functionality that HTML can't natively support very well (such as client-side routing), which means that a static site probably doesn't _need_ JavaScript.
+Considering that a blog is primarily made of static content, it makes sense that you shouldn't really need to ship much (if any) JavaScript to your site visitors. JavaScript should be used for adding interactivity to pages or adding functionality that HTML can't natively support very well (such as client-side routing), which means that a static site shouldn _need_ much JavaScript.
 
-The problem is that you probably want to use JavaScript at least at build time because there are a lot of things that are far easier to do programmatically, such as fetching all of the blog posts and turning them into blog pages.
+Of course the problem is that you probably want to use JavaScript while authoring your site because there are a lot of things that are far easier to do programmatically, such as fetching all of the blog posts and turning them into blog pages.
 
-Astro manages to achieve 0kb of JavaScript by default by allowing you to write JavaScript within your `.astro` files and then executing that JavaScript at build-time so that you dont have to ship any of it to your end user. This is in contrast to other static site generators like NextJS, which do allow you to compile out _most_ of your JavaScript at build time but still require you to ship a decent amount of JavaScript to the browser.
+Astro strikes a great balance here by allowing you to write JavaScript/TypeScript within your `.astro` files and then execute that JavaScript at build-time without requiring any of it to be executed by the user at run time. This is in contrast to other static site generators like NextJS, which do allow you to compile _most_ of your JavaScript at build time but still requires you to ship a decent amount of JavaScript to the browser for your site to work properly (although React Server Components do help reduce this cost).
 
-Importantly, Astro does still allow you to ship JavaScript to the client via inline scripts as well as "Islands" which are [interactive UI component on an otherwise static page of HTML](https://docs.astro.build/en/concepts/islands/). Basically, Astro defaults to 0kb of JS but you can still sprinkle in interactivity where it makes sense or even leverage UI frameworks like React or Svelte and sprinkle them into your static pages.
+Of course, sometimes you do need some client-side JavaScript for certain forms of interactivity. Astro supports this via "Islands" which are [interactive UI component on an otherwise static page of HTML](https://docs.astro.build/en/concepts/islands/). Basically, Astro defaults to shipping 0kb of JS but you have the optiona of shipping some JS for interactivity where it makes sense.
 
-For this website, I wound up shipping a small amount of vanilla JS (<1kb) so that the pages can render the site in a light or dark theme, another bit of JS to support page prefetching, and lastly I shipped some Solid.js via Astro Islands to support client side search functionality on the [search page](/search).
+To share some examples from this website, I wound up shipping a small amount of vanilla JS (<1kb) so that the pages can determine whether to render the site in a light or dark theme, some more JS to enable page prefetching within AStro, and lastly some Solid.js to support client side search functionality on the search page.
 
 <!-- TODO: add captions for sighted users -->
 <!-- TODO: make this image zoomable on mobile devices somehow -->
@@ -38,19 +38,11 @@ For this website, I wound up shipping a small amount of vanilla JS (<1kb) so tha
 
 <h3 id="integrations"><a href="#integrations">Easy integration with your preferred UI library</a></h3>
 
-One of the great things about Astro islands is that the framework allows you to statically render any other UI framework of your choice. To me, this is one of the coolest things about Astro since building with Astro doesn't lock you into using _just_ Astro. If you prefer React and want to be able to leverage the vast ecosystem around it, you can totally write make some React components and render them as Astro islands. If you prefer a leaner, more performant framework like Solid.js or Svelte, the Astro build chain supports that as well.
+As hinted at in the previous section, Astro islands allow you to statically render any other UI framework of your choice. To me, this is one of the coolest things about Astro since building with Astro doesn't lock you into using _just_ Astro. If you like React and want to be able to leverage the vast ecosystem around it, you can totally write some React components and render them as Astro islands. If you prefer a leaner, more performant framework like Solid.js or Svelte, the Astro build chain supports those options as well.
 
-This is a really welcome change when compared against generators like NextJS (React) or Nuxt (Vue) since it basically ensures you can get the best of all worlds. You're basically encouraged to write as much of your site in Astro as you can since it ensures optimal performance, and then you can escape into a more client-oriented JS framework whenever you need to do something that can't be fully achieved via static HTML/CSS (such as client-side search functionality)
+To be clear, you might not even need one of these frameworks since Astro itself supports JSX and reusable components within `.astro` files. But if you're doing something that would be easier with a framework that allows for state or reactivity, you can leverage that framework where it makes sense.
 
-All of the big players in the frontend space have easy to use Astro integrations, so you can author your UI components in whatever way makes the most sense to you.
-
-<h3 id="jsx-support"><a href="#jsx-support">JSX Support</a></h3>
-
-I'll be showing my bias a bit here, but part of the reason I wound up enjoying Astro so much is that it still supports JSX syntax. This means that you can still make reusable JavaScript components and render them directly in your HTML just like if you were authoring a React application, except those components wont actually ship any JavaScript to the client. Instead, Astro transpiles all of your JSX at build time into normal HTML.
-
-For developers that have used JSX before, this probably doesnt seem like an impressive enough feature to even mention, but the thing you have to realize is that it enables you to write the _vast_ majority of your website using `.astro` files rather than having to write the majority of your code using a UI framework (which would result in having to ship more JavaScript to the client). Authoring in `.astro` files winds up feeling like a sort of "supercharged" HTML since you can add in programming logic and reusable components without paying any cost in terms of client-side JavaScript.
-
-![Screenshot of Chrome's developer tools network panel showing a grand total of 2.1kb of JS loaded on the home page of lancejeffers.com](../../assets/sample-jsx-usage.png)
+This is a really welcome change when compared against other frameworks offering static-site-generation like NextJS (React) or Nuxt (Vue) since it basically ensures you can get the best of all worlds. Astro encourages you to write as much of your site in Astro as you can since that ensures optimal performance, but you can still leverage a more client-oriented JS framework whenever you need to do something that can't be fully achieved via static HTML/CSS (such as client-side search functionality)
 
 <h3 id="typesafe-markdown"><a href="#typesafe-markdown">Typesafe Markdown</a></h3>
 
@@ -58,9 +50,11 @@ I haven't used a ton of other static site generators besides Astro and NextJS, s
 
 I found it extremely easy to get up and running with this, and it makes authoring markdown content locally (as opposed to using a Content Management System) a much easier experience.
 
+<hr />
+
 <h2 id="room-for-improvements"><a href="#room-for-improvements">Room For Improvements</a></h2>
 
-There are a lot of other benefits that Astro offers, but I've sufficiently covered the main areas that stood out to me as a first-time Astro user. Now, I'd like to focus on the areas where I felt Astro was missing the mark.
+With some of my favorite highlights out of the way, I'd also like to discuss some of the areas where I felt Astro was missing the mark.
 
 <h3 id="optimizing-output"><a href="#optimizing-output">Fully optimizing the output build was not simple</a></h3>
 
@@ -68,11 +62,13 @@ For a framework that focuses primarily on static sites, I was surprised that Ast
 
 <h4 id="font-optimization"><a href="#font-optimization">Font Optimization</a></h4>
 
-For individuals that have done web development on performant websites, you already know that ensuring the right font is available as soon as possible is critical if you want to avoid the dreaded Flash Of Unstyled Text (FOUT). For those that aren't familiar, FOUT occurs when the browser has fully parsed your CSS and HTML and then renders the page, but the fonts that your CSS relies on haven't finished loading in over the network. The end result is that the user sees the entire page render in a default font that is available on their device and then a short time later all of the text on the page gets rerendered using the intended font once the browser is done fetching it. This creates a bit of a jarring user experience and is a common issue for websites that load quickly.
+Experienced frontend developers already know that ensuring the right font is available is critical if you want to avoid the dreaded Flash Of Unstyled Text (FOUT).
 
-At a high level, the solution to FOUT involves self-hosting the font so that it doesnt require an additional network connection to a different domain and can therefore load in quicker, but there are also additional font optimizations that can further improve performance such as subsetting the font in order to avoid loading in unnecessary glyphs that your pages don't use.
+For those that aren't familiar, FOUT occurs when the browser has fully parsed your CSS and HTML but your CSS requests non-system fonts that must be loaded over the network and they haven't finished loading prior to the browser rendering your page. The end result is that the user sees the entire page render in a system font that is available on their device and then a short time later all of the text on the page gets rerendered using the intended font once the browser is done fetching it. This creates a jarring user experience and is a common issue for websites that load quickly.
 
-Unfortunately, despite font optimization being a common issue that many sites need to tackle if they want to deliver an optimal User Experience, Astro does not currently offer any sort of framework-level solution.
+The solution to FOUT generally involves self-hosting the font so that it doesnt require an additional network connection to a different domain and can therefore load in quicker, but there are also additional font optimizations that can further improve performance such as subsetting the font in order to avoid loading in unnecessary glyphs that your pages don't need.
+
+Unfortunately, despite font optimization being a common issue that many sites need to tackle if they want to deliver a performant user experience, Astro does not currently offer any sort of framework-level solution.
 
 I wound up using the [subfont npm package](https://www.npmjs.com/package/subfont) and running it as part of my build script since it handles all the work of subsetting the font and creating a self-hosted copy. Additionally, I chose to set the font-display to "fallback" so that the browser won't actually render the text on the page until the font file is fully loaded in, ensuring that FOUT basically never occurs as long as the user's network connection doesn't experience an error.
 

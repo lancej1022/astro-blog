@@ -6,8 +6,8 @@ import remarkCollapse from "remark-collapse";
 import sitemap from "@astrojs/sitemap";
 import { SITE } from "./src/config";
 import prefetch from "@astrojs/prefetch";
-
 import compress from "astro-compress";
+import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
@@ -25,6 +25,7 @@ export default defineConfig({
       selector: "a",
     }),
     compress(),
+    mdx(),
   ],
   markdown: {
     remarkPlugins: [
