@@ -5,13 +5,13 @@ layout: ../layouts/AboutLayout.astro
 ## Care
 
 <!-- TODO: Dont hardcode colors like this -->
-<label style="color:#fff">
+<label style="display: inline-block; color:#fff; margin-bottom:16px">
     <!-- TODO: pull the checkbox value from localstorage -->
     <input type="checkbox"></input>
-    Feed Meep a small treat after entering to help her socialize.
+    Feed Meep a small treat after entering to help her socialize. The treats are located above the fridge in the purple bag.
 </label>
 <div>
-    <label style="color:#fff">
+    <label style="display: inline-block; color:#fff; margin-bottom:16px">
         <input type="checkbox"></input>
         <!-- TODO: fix the link -->
         Make sure her litterbox in the bathroom isn&apos;t stuck. For instructions on how to fix it if stuck, refer to <b><u><a href="#fixing-the-litter-robot">the "fixing the litter robot" section on this page</a></b></u>
@@ -19,25 +19,25 @@ layout: ../layouts/AboutLayout.astro
 </div>
 
 <div>
-    <label style="color:#fff">
+    <label style="display: inline-block; color:#fff; margin-bottom:16px">
         <input type="checkbox"></input>
         Make sure her food bowl is not overflowing. If it is, you can just dump the food currently in the bowl back into the feeder by removing the top of the feeder. The feeder's top can be removed by depressing the 2 clips on either side of the circle in the middle of the top plate.
     </label>
 </div>
 <div>
 <div>
-    <label style="color:#fff">
+    <label style="display: inline-block; color:#fff; margin-bottom:16px">
         <input type="checkbox"></input>
         Top off Meep's water bowl so that there is at least 1 inch of water in the bowl. There is a watering can in the cabinet above the microwave and you can fill it with water from the water dispenser inside the fridge. <b>NOTE: When closing the fridge, you need to make sure the water dispenser is pushed to the back of the fridge otherwise the fridge door will hit the dispenser when you close it, causing the dispenser to leak everywhere.</b> 
     </label>
 </div>
-    <label style="color:#fff">
+    <label style="display: inline-block; color:#fff; margin-bottom:16px">
         <input type="checkbox"></input>
-        Make sure the AC is maintaining 77 degrees.
+        Make sure the AC is maintaining 76 degrees.
     </label>
 </div>
 <div>
-    <label style="color:#fff">
+    <label style="display: inline-block; color:#fff; margin-bottom:16px">
         <input type="checkbox"></input>
         Play with Meep. Her toys are in the 3rd drawer from the top, next to the dishwasher.
     </label>
